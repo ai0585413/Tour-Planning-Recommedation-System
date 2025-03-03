@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Header styling */
+       header {
+        background-color: #fff;
+        padding: 20px 0;
+        color: #333;
+        border-bottom: 1px solid #ddd;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        list-style-type: none;
+        padding: 0;
+        margin: 0 20px;
+    }
+
+    nav ul li {
+        padding: 10px 15px;
+    }
+
+    .logo {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #333;
+    }
+
+    nav ul li a {
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1em;
+        transition: color 0.3s ease; /* Smooth transition for hover effect */
+    }
+
+    /* Hover effect */
+    nav ul li a:hover {
+        color: #8bc34a; /* Green color on hover */
+    }
+
+    .primary-btn {
+        background-color: #8bc34a;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .primary-btn:hover {
+        background-color: #7cb342; /* Slightly darker green on button hover */
+    }
+
+    .fa-search {
+        font-size: 1.3em;
+        color: #333;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .fa-search:hover {
+        color: #8bc34a; /* Green color for search icon on hover */
+    }
+        /* Dashboard styling */
+        .dashboard-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            background-image: url("{{ url_for('static', filename='images/sylet.png') }}"); /* Replace with your background image path */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: #fff;
+            min-height: 50vh;
+        }
+        .dashboard-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 128, 0, 0.4);
+            z-index: 1;
+        }
+        .dashboard-content {
+            display: flex;
+            gap: 20px;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+        .dashboard-content h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+            width: 100%;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card h2 {
+            font-size: 3em;
+            color: #333;
+            margin: 0;
+        }
+        .card p {
+            color: #666;
+            font-size: 1.2em;
+        }
+        .primary-btn {
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .primary-btn:hover {
+            background-color: #e64a19;
+        }
+        footer {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 0; /* Compact padding */
+    text-align: center;
+    margin-top: 10px; /* Adjusted margin to push footer lower */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 2px; /* Reduced padding for tighter layout */
+}
+
+/* Footer links styling */
+.footer-links a {
+    color: #fff; /* Link color */
+    text-decoration: none; /* No underline */
+    margin: 0 5px; /* Adjusted margin between links */
+    font-size: 10px; /* Smaller font size for compactness */
+}
+
+.footer-links a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Social media icons styling */
+.footer-icons {
+    margin: 0 5px; /* Space around icons */
+}
+
+.footer-icons i {
+    font-size: 14px; /* Smaller icon size */
+    margin: 0 5px; /* Space between icons */
+}
+
+/* Responsive footer adjustments */
+@media screen and (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* Stack footer content on smaller screens */
+        align-items: center; /* Center align for small screens */
+    }
+
+    .footer-links,
+    .footer-icons {
+        margin-bottom: 5px; /* Space below elements */
+    }
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0; /* Remove margin for a tighter fit */
+}
+
+.footer-section h3 {
+    margin-bottom: 2px; /* Reduce space below heading */
+    font-size: 12px; /* Smaller font size for headings */
+}
+
+.footer-section p {
+    font-size: 10px; /* Smaller font size for text */
+    margin: 1px 0; /* Reduced margin for compactness */
+}
+
+.footer-section a {
+    color: #fff; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.footer-section a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Remove default list margin */
+}
+
+.footer-section ul li {
+    margin-bottom: 0; /* Remove margin for minimal spacing */
+}
+
+.footer-section ul li a {
+    color: #fff;
+    font-size: 10px; /* Smaller font size for list links */
+    text-decoration: none;
+}
+
+.footer-section .socials a {
+    color: #fff;
+    margin-right: 2px; /* Further reduced margin */
+}
+
+.footer-section .socials a:hover {
+    color: #ff9800;
+}
+.footer-bottom {
+    border-top: 1px solid #555;
+    padding-top: 11px; /* Minimal padding */
+    font-size: 10px; /* Smaller font size for text in the footer bottom */
+    color: #fff; /* Ensure text color remains white for visibility */
+}
+
+/* If there are specific text elements inside footer-bottom, you can style them individually */
+.footer-bottom p,
+.footer-bottom a {
+    margin: 0; /* Remove margin for a tighter fit */
+    font-size: 10px; /* Keep the font size consistent */
+    color: #fff; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+
+
+footer form input,
+footer form textarea {
+    width: 100%;
+    margin-bottom: 1px; /* Minimal margin */
+    padding: 1px; /* Very tight padding */
+    font-size: 10px; /* Smaller font size for inputs */
+}
+
+footer form button {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 1px; /* Minimal padding */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 10px; /* Smaller font size for buttons */
+}
+
+footer form button:hover {
+    background-color: #e67e22;
+}
+
+
+    </style>
+</head>
+<body>
+
+<header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/admin">User Given Input & Recommendation</a></li>
+            <li><a href="/select">User Selection</a></li>
+            <li><a href="/review">User Feedback</a></li>
+
+            <li><button class="primary-btn">LOG IN</button></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="dashboard-container">
+    <div class="dashboard-content">
+        <h1>ADMIN DASHBOARD</h1>
+        <div class="card">
+            <h2>3</h2>
+            <p>User Given Input & Recommendation</p>
+        </div>
+        <div class="card">
+            <h2>3</h2>
+            <p>User Selection</p>
+        </div>
+        <div class="card">
+            <h2>3</h2>
+            <p>User Feedback</p>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h3>About TOUR PLANNING</h3>
+            <p>TOUR PLANNING is your go-to platform for planning memorable trips with optimized routes and personalized
+                recommendations. Our aim is to make travel planning simple, efficient, and enjoyable.</p>
+            <div class="contact">
+                <p><i class="fa fa-phone"></i> +123-456-7890</p>
+                <p><i class="fa fa-envelope"></i> support@tourplanning.com</p>
+            </div>
+            <div class="socials">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#user-info">User Info</a></li>
+                <li><a href="#user-given-input-and-recommendation">User Input & Recommendations</a></li>
+                <li><a href="#user-selection">User Selection</a></li>
+                <li><a href="#user-feedback">Feedback</a></li>
+                <li><a href="#book-now">Book Now</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section contact-form">
+            <h3>Contact Us</h3>
+            <form action="/contact" method="post">
+                <input type="email" name="email" placeholder="Your email address" required>
+                <textarea name="message" placeholder="Your message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2024 TOUR PLANNING | All Rights Reserved</p>
+        <p>Developed by [Your Name/Company]</p>
+    </div>
+</footer>
+
+
+</body>
+</html>
+
