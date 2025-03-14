@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        /* Resetting margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Main body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("{{ url_for('static', filename='images/bardarban.jpg') }}"); no repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        /* Styling for the main message container */
+        .thank-you-message {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white */
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Header styling */
+        .thank-you-message h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* Paragraph styling */
+        .thank-you-message p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* Link/Button styling */
+        .thank-you-message a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        /* Hover effect for the button */
+        .thank-you-message a:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-message">
+        <h1>Thank You!</h1>
+        <p>Your route has been successfully selected.</p>
+        <p><a href="{{ url_for('routes_app.recent_routes') }}">Update selection</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+   
+   .book .form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 8px 80px rgba(0, 0, 0, 0.1);
+    }
+
+    .book .grid {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .book .grid div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+
+    .book label {
+        font-size: 16px;
+        color: black;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .book input[type="text"] {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 200px;
+        background-color: white;
+        color: black;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .book input[type="number"] {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 300px;
+        background-color: white;
+        color: black;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .book input[type="submit"] {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #48D1CC;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .book input[type="submit"]:hover {
+        background-color: #40B5B1;
+    }
+
+    /* Suggestion box styling */
+    .suggestions {
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        max-height: 200px;
+        overflow-y: auto;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        top: 100%;
+        margin-top: 2px; /* Ensures the box appears directly below the input */
+    }
+    .suggestions div {
+        padding: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        color: black;
+    }
+    .suggestions div:hover {
+        background-color: #eee;
+    }
+
+    .input-group {
+        position: relative;
+        width: 200px;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="content flex_space">
+            <div class="logo">
+                <!-- Add the path to your logo image -->
+                <img src="path/to/your/logo.png" alt="">
+            </div>
+            <div class="navlinks">
+                <ul id="menulist">
+                    <li><a href="/">home</a></li>
+                    <li><a href="/about">about</a></li>
+                    <li><a href="/contact">contact us</a></li>
+                    <li><a href="/feedback"> Feedback</a></li>
+
+                   <!--  <li><i class="fa fa-search"></i></li>-->
+                    <li>
+                       <a href="{{ url_for('routes_app.logout') }}" class="primary-btn">Log OUT</a>
+
+                    <li>
+                         <a href="{{ url_for('login') }}" class="primary-btn">LOG IN</a>
+                    </li>
+                </ul>
+                <!-- Fix the class name for the bars icon and add a space before the onclick attribute -->
+                <span class="fa fa-bars" onclick="menutoggle()"></span>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        var menulist = document.getElementById('menulist');
+        menulist.style.maxHeight = "0px";
+
+        function menutoggle(){
+            if (menulist.style.maxHeight == "0px"){
+                menulist.style.maxHeight = "100vh";
+            } else {
+                menulist.style.maxHeight = "0px";
+            }
+        }
+    </script>
+
+    <section class="home">
+        <div class="content">
+            <div class="owl-carousel owl-theme">
+                <div class="items">
+                    <img src="{{ url_for('static', filename='images/longest-sea-beach-in.jpg') }}" alt="">
+                    <div class="text">
+                        <h1>Discover more in less time</h1>
+                        <p>Looking for your next adventure? Our travel recommendation system helps you find the perfect places to visit, all based on your likes and interests. Start exploring now!</p>
+                        <div class="flex">
+                            <button class="primary-btn">READ MORE</button>
+                            <button class="secondary-btn">CONTACT US</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="items;">
+                    <img src="{{ url_for('static', filename='images/ahsan-manzil-museum.jpg') }}" alt="">
+                    <div class="text">
+                        <h1>Discover more in less time</h1>
+                        <p>Looking for your next adventure? Our travel recommendation system helps you find the perfect places to visit, all based on your likes and interests. Start exploring now!</p>
+                        <div class="flex">
+                            <button class="primary-btn">READ MORE</button>
+                            <button class="secondary-btn">CONTACT US</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="items">
+                    <img src="{{ url_for('static', filename='images/grambangla2.jpg') }}" alt="">
+                    <div class="text">
+                        <h1>Discover more in less time</h1>
+                        <p>Looking for your next adventure? Our travel recommendation system helps you find the perfect places to visit, all based on your likes and interests. Start exploring now!</p>
+                        <div class="flex">
+                            <button class="primary-btn">READ MORE</button>
+                            <button class="secondary-btn">CONTACT US</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js" integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:0,
+    nav:true,
+    dots: false,
+    navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        768:{
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    }
+})
+    </script>
+    
+    <section class="book">
+        <div class="container flex_space">
+            <div class="form">
+                <form class="grid" method="POST" action="/merge/index">
+                    <div class="input-group">
+                        <label for="current_location">Current Location:</label>
+                        <input type="text" id="current_location" name="current_location" oninput="fetchSuggestions(this.value, 'current_location_suggestions')" required>
+                        <div id="current_location_suggestions" class="suggestions"></div>
+                    </div>
+    
+                    <div class="input-group">
+                        <label for="end_location">End Location:</label>
+                        <input type="text" id="end_location" name="end_location" oninput="fetchSuggestions(this.value, 'end_location_suggestions')" required>
+                        <div id="end_location_suggestions" class="suggestions"></div>
+                    </div>
+    
+                    <div>
+                        <label for="time_in_hours">Maximum Travel Time (hours):</label>
+                        <input type="number" id="time_in_hours" name="time_in_hours" step="0.1" required>
+                    </div>
+    
+                    <input type="submit" value="Find Routes">
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        async function fetchSuggestions(query, suggestionBoxId) {
+            if (query.length < 1) {
+                document.getElementById(suggestionBoxId).innerHTML = ''; // Clear suggestions if query is empty
+                return;
+            }
+    
+            try {
+                const response = await fetch(`/merge/autocomplete?q=${encodeURIComponent(query)}`);
+                const suggestions = await response.json();
+    
+                const suggestionBox = document.getElementById(suggestionBoxId);
+                suggestionBox.innerHTML = ''; // Clear previous suggestions
+    
+                suggestions.forEach(suggestion => {
+                    const div = document.createElement('div');
+                    div.textContent = suggestion;
+                    div.onclick = () => {
+                        document.getElementById(suggestionBoxId.replace('_suggestions', '')).value = suggestion;
+                        suggestionBox.innerHTML = ''; // Clear suggestions after selection
+                    };
+                    suggestionBox.appendChild(div);
+                });
+            } catch (error) {
+                console.error('Error fetching suggestions:', error);
+            }
+        }
+    </script>
+    
+
+    <section class="about top">
+        <div class="container flex">
+            <div class="left">
+              <div class="heading">
+                <h1>Welcome</h1>
+                <h2>Tourist Recommendation System</h2>
+            </div>
+<p style="font-size: 20px;">
+    The Tourist Recommendation System helps travelers plan their trips by suggesting the best places to visit based on their starting point, destination, and available time. It creates an optimized travel route, so users can visit multiple attractions without worrying about time limits. Unlike traditional systems, this one focuses on time management and route efficiency, ensuring travelers make the most of their journey.The system includes recommendations for attractions in various Bangladeshi Upazilas, enhancing the travel experience within the country.</p>
+
+</div>
+<div class="right">
+    <img src="{{ url_for('static', filename='images/Night-view-Dhaka-Bangladesh.jpg') }}" alt="Night view Dhaka">
+
+</div>
+        </div>
+    </section>
+
+    <section class="counter top">
+        <div class="container grid">
+            <div class="box">
+                <h1>🚗💨</h1>
+                <hr>
+                <span> Ready for Adventure?</span>
+            </div>
+            <div class="box">
+                <h1> ⛱️ </h1>
+                <hr>
+                <span> Your Next Escape Awaits</span>
+            </div>
+            <div class="box">
+                <h1>🗺️ </h1>
+                <hr>
+                <span> Expert Guidance</span>
+            </div>
+            <div class="box">
+                <h1>🧳</h1>
+
+                <hr>
+                <span>Discover Bangladesh</span>
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <section class="rooms">
+        <div class="container top">
+            <div class="heading">
+                <h1>EXPLORE</h1>
+                <h2>Top Destination For Your Next Vacation</h2>
+                <p>Explore the Vibrant Culture and Natural Wonders of Bangladeshi Upazilas</p>
+            </div>
+            <div class="content mtop">
+                <div class="owl-carousel owl-carousel1 owl-theme">
+    
+                    <div class="items">
+                        <div class="image">
+                            <img src="{{ url_for('static', filename='images/lalbag.jpg') }}" alt="">
+                        </div>
+                        <div class="text">
+                            <h2>Lalbagh Fort</h2>
+                            <div class="rate flex">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p>Lalbagh Fort, located in Old Dhaka, is a historic Mughal fort known for its beautiful gardens, impressive architecture, and rich history. It attracts tourists with its stunning mosque, tomb, and museum, offering a glimpse into Bangladesh's Mughal past.</p>
+                           
+                        </div>
+                    </div>
+    
+                    <div class="items">
+                        <div class="image">
+                            <img src="{{ url_for('static', filename='images/shangshadVaban.jpg') }}" alt="Bangladesh National Parliament House">
+                        </div>
+                        <div class="text">
+                            <h2>Bangladesh National Parliament House</h2>
+                            <div class="rate flex"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                            <p>The Bangladesh National Parliament House, also known as Jatiyo Sangsad Bhaban, is an iconic architectural masterpiece located in Sher-e-Bangla Nagar, Dhaka. It attracts tourists for its unique blend of modernist architecture and serene surroundings.</p>
+                           
+                        </div>
+                    </div>
+                    <div class="items">
+                        <div class="image">
+                            <img src="{{ url_for('static', filename='images/Sonargaon-Museum-Narayanganj.jpg') }}" alt="Sonargaon Museum">
+                        </div>
+                        <div class="text">
+                            <h2>Sonargaon Museum</h2>
+                            <div class="rate flex"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                            <p>Sonargaon Museum, located in Narayanganj, showcases Bangladesh's rich cultural heritage with exhibits of traditional art, crafts, and ancient artifacts. It draws tourists with its historical significance and displays of folk arts, including the famous muslin textiles.</p>
+                           
+                        </div>
+                    </div>
+                    <div class="items">
+                        <div class="image">
+                            <img src="{{ url_for('static', filename='images/Striti Shoudho.jpg') }}" alt="National Martyrs' Monument">
+                        </div>
+                        <div class="text">
+                            <h2>National Martyrs' Monument</h2>
+                            <div class="rate flex"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                            <p>The National Martyrs' Monument, or Jatiyo Smriti Soudho, located in Savar near Dhaka, symbolizes Bangladesh's independence and honors those who sacrificed their lives in the 1971 Liberation War. Tourists are drawn to its striking architecture and serene surroundings, reflecting the nation's pride.</p>
+                            
+                        </div>
+                    </div>
+                    <div class="items">
+                        <div class="image">
+                            <img src="{{ url_for('static', filename='images/shahidMinar2.jpg') }}" alt="Central Shaheed Minar">
+                        </div>
+                        <div class="text">
+                            <h2>Central Shaheed Minar</h2>
+                            <div class="rate flex"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                            <p>The Central Shaheed Minar, located near Dhaka University, honors the martyrs of the 1952 Language Movement. It attracts tourists for its historical significance as a symbol of the fight for Bengali language rights.</p>
+                        
+                        </div>
+                    </div>
+                    <div class="items">
+                        <div class="image">
+                             <img src="{{ url_for('static', filename='images/Sundarban2.png') }}" alt="Sundarbans">
+                        </div>
+                        <div class="text">
+                            <h2>Sundarbans</h2>
+                            <div class="rate flex"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                            <p>The Sundarbans, located in the Khulna Division of southwestern Bangladesh, is the world's largest mangrove forest and a UNESCO World Heritage Site. It is renowned for its unique biodiversity, especially the endangered Bengal tiger, attracting tourists for wildlife watching and boat tours.</p>
+                        </div>
+                    </div>
+                    <div class="items">
+                        <div class="image">
+                            <img src="{{ url_for('static', filename='images/sandMartin.jpg') }}" alt="Sanmartin">
+                        </div>
+                        <div class="text">
+                            <h2>SandMartin</h2>
+                            <div class="rate flex"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                            <p>The Sand Martin is found along rivers and wetlands, particularly in areas like Cox's Bazar, where it is known for its unique nesting behavior of digging tunnels in sandy banks. This migratory bird attracts birdwatchers and nature enthusiasts, making it a popular spot for wildlife observation during the breeding season.</p>
+                           
+                        </div>
+                    </div>
+
+                    
+    
+                    <!-- Add more items as needed -->
+    
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:40,
+    nav:true,
+    dots: false,
+    navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        768:{
+            items:2,
+            margin:10,
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+    </script>
+
+<section class="gallery">
+    <div class="container top">
+        <div class="heading">
+            <h1>PHOTOS</h1>
+            <h2>Our Gallery</h2>
+            <p>Discover Bangladesh's Stunning Tourist Destinations.</p>
+            <div></div>
+        </div>
+        <div class = "content mtop">
+            <div class="owl-carousel owl-carousel1 owl-theme">
+                <div class="items">
+                    <div class="img">
+                        <img src="{{ url_for('static', filename='images/ahsanManjil.jpg') }}" alt="Ahsan Manjil">
+                    </div>
+                    <div class="overlay">
+                        <span class="fa fa-plus"></span>
+                        <h3>Photo Titles Here.</h3>
+                    </div>
+
+                </div>
+                <div class="items">
+                    <div class="img">
+                        <img src="{{ url_for('static', filename='images/bandarban2.jpg') }}" alt="Bandarban">
+                    </div>
+                    <div class="overlay">
+                        <span class="fa fa-plus"></span>
+                        <h3>Photo Titles Here.</h3>
+                    </div>
+
+                </div>
+                <div class="items">
+                    <div class="img">
+                        <img src="{{ url_for('static', filename='images/Bangabandhu.jpg') }}" alt="Bangabandhu">
+                    </div>
+                    <div class="overlay">
+                        <span class="fa fa-plus"></span>
+                        <h3>Photo Titles Here.</h3>
+                    </div>
+
+                </div>
+                <div class="items">
+                    <div class="img">
+                        <img src="{{ url_for('static', filename='images/bardarban.jpg') }}" alt="Bardarban">
+                    </div>
+                    <div class="overlay">
+                        <span class="fa fa-plus"></span>
+                        <h3>Photo Titles Here.</h3>
+                    </div>
+
+                </div>
+                <div class="items">
+                    <div class="img">
+                        <img src="{{ url_for('static', filename='images/Padma.jpg') }}" alt="Padma">
+                    </div>
+                    <div class="overlay">
+                        <span class="fa fa-plus"></span>
+                        <h3>Photo Titles Here.</h3>
+                    </div>
+
+                </div>
+                <div class="items">
+                    <div class="img">
+                        <img src="{{ url_for('static', filename='images/rajbari.jpg') }}" alt="Padma">
+                    </div>
+                    <div class="overlay">
+                        <span class="fa fa-plus"></span>
+                        <h3>Photo Titles Here.</h3>
+                    </div>
+
+                </div>
+                <div class="items">
+                    <div class="img">
+                        <img src="{{ url_for('static', filename='images/Royal-Bengal-Tiger-300x154.jpg') }}" alt="Padma">
+                    </div>
+                    <div class="overlay">
+                        <span class="fa fa-plus"></span>
+                        <h3>Photo Titles Here.</h3>
+                    </div>
+
+                </div>
+                <div class="items">
+                    <div class="img">
+                        <img src="{{ url_for('static', filename='images/SangsadBhaban.jpg') }}" alt="Padma">
+                    </div>
+                    <div class="overlay">
+                        <span class="fa fa-plus"></span>
+                        <h3>Photo Titles Here.</h3>
+                    </div>
+
+                </div>
+                <div class="items">
+                    <div class="img">
+                        <img src="{{ url_for('static', filename='images/teagarden.png') }}" alt="Padma">
+                    </div>
+                    <div class="overlay">
+                        <span class="fa fa-plus"></span>
+                        <h3>Photo Titles Here.</h3>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $('.owl-carousel').owlCarousel({
+loop:true,
+margin:0,
+nav:true,
+dots: false,
+autoplay:true,
+autoplayTimeout:1000,
+autoplayHoverPause:true,
+navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+responsive:{
+    0:{
+        items:1
+    },
+    768:{
+        items:4,
+    },
+    1000:{
+        items:6
+    }
+}
+})
+</script>
+
+<section class ="services top">
+    <div class="container">
+        <div class="heading">
+            <h1>SERVICES</h1>
+            <h2>Our Services</h2>
+            <p>These top services ensure you enjoy a personalized and efficient travel adventure, maximizing every moment of your trip.</p>
+        </div>
+
+        <div class="content flex_space">
+            <div class="left grid2">
+                <div class="box">
+                    <div class="text">
+                        <i class="fa-solid fa-route"></i>
+                        <h3>Optimized Travel Routes</h3>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="text">
+                        <i class="fa-solid fa-clock"></i>
+                        <h3>Time-Based Recommendations</h3>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="text">
+                        <i class="fa-solid fa-map-marked-alt"></i>
+                        <h3>Upazila-Specific Travel Guidance</h3>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="text">
+                        <i class="fa-solid fa-bell"></i>
+                        <h3>Real-Time Trip Updates</h3>
+                    </div>
+
+                </div>
+
+        </div>
+        <div class="right">
+            <img src="{{ url_for('static', filename='images/services.jpeg') }}" alt="Our Services">
+
+        </div>
+        </div></div>
+</section>
+
+<section class="Customer top">
+    <div class ="container">
+        <h2>What Our Customers Say?</h2>
+        <div class="owl-carousel owl-carousel2 owl-theme">
+            <div class="item">
+       
+             <i class="fa-solid fa-comments"></i>
+
+                <p>"The Tourist Recommendation System completely transformed my travel experience! I discovered hidden gems in every Upazila I visited, all while staying within my time limits. I couldn't have planned such a perfect trip without it!"</p>
+                <h3>Julia Robertson</h3>
+                <label>Traveler</label>
+            </div>
+            <div class="item">
+                <i class="fa-solid fa-comments"></i>
+                <p>"As an explorer, I've used many travel apps, but this one is by far the best. The optimized routes saved me so much time, allowing me to see more attractions than ever before. Highly recommend it!"</p>
+                <h3>Michael Smith</h3>
+                <label>Explorer</label>
+            </div>
+            <div class="item">
+                <i class="fa-solid fa-comments"></i>
+                <p>"I love how this system provides personalized trip planning. It recommended places that matched my interests perfectly, and I felt like I was getting the insider scoop on every location!"</p>
+                <h3>Emily Johnson</h3>
+                <label>Adventurer</label>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<script>
+    $('.owl-carousel').owlCarousel({
+loop:true,
+margin:0,
+nav:false,
+dots: true,
+responsive:{
+    0:{
+        items:1
+    },
+    768:{
+        items:1,
+    },
+    1000:{
+        items:1
+    }
+}
+})
+</script>
+
+<section>
+
+</section>
+
+<script src="https://kit.fontawesome.com/032d11eac3.js" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

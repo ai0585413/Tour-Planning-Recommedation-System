@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website Title</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+          integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+          integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+          integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        /* Reset default styles for margins and padding */
+        /* Import Google Fonts */
+        Import Google Fonts *
+
+        /
+        @import url(https://fonts.googleapis.com/css2);
+
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1, h2 {
+            font-family: sans-serif;
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        /* Flexbox Layouts */
+        .flex {
+            display: flex;
+        }
+
+        .flex_space {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Button Styles */
+        button {
+            border: none;
+            background: none;
+            outline: none;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        .primary-btn {
+            padding: 15px 40px;
+            background: #7fc142;
+            font-weight: bold;
+            color: white;
+        }
+
+        .secondary-btn {
+            padding: 15px 40px;
+            background: none;
+            border: 2px solid white;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Container */
+        .container {
+            max-width: 85%;
+            margin: auto;
+        }
+
+        /* Header */
+        header {
+            height: 11vh;
+            line-height: 10vh;
+            padding: 0 20px;
+        }
+
+        header img {
+            margin: 20px 0;
+        }
+
+        header ul {
+            display: inline-block;
+        }
+
+        header ul li {
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        header ul li a {
+            color: black;
+            margin: 0 10px;
+            transition: 0.5s;
+        }
+
+        header ul li a:hover {
+            color: #7fc142;
+        }
+
+        header i {
+            margin: 0 20px;
+        }
+
+        header button {
+            padding: 13px 40px;
+        }
+
+        header .navlinks span {
+            display: none;
+        }
+
+        /* Responsive Header for Mobile */
+        @media only screen and (max-width: 768px) {
+            header ul {
+                position: absolute;
+                top: 100px;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: #009f7f;
+                overflow: hidden;
+                transition: max-height 0.5s;
+                text-align: center;
+                z-index: 9;
+            }
+
+            header ul li {
+                display: block;
+            }
+
+            header ul li a {
+                color: white;
+            }
+
+            header i {
+                color: white;
+            }
+
+            header .navlinks span {
+                color: black;
+                display: block;
+                cursor: pointer;
+                line-height: 10vh;
+                font-size: 25px;
+            }
+
+            /* Adjust owl carousel images on smaller screens */
+            .owl-carousel .item {
+                height: 100vh;
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        /* Customer Section */
+        .Customer {
+            background-image: url("customer_blur.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 20vh;
+            width: 100%;
+            color: black;
+            text-align: center;
+        }
+
+        .Customer .container {
+            max-width: 70%;
+        }
+
+        .Customer .item {
+            padding: 10% 0;
+        }
+
+        .Customer i {
+            height: 100px;
+            width: 100px;
+            background: rgba(126, 193, 64, 0.57);
+            line-height: 100px;
+            border-radius: 50%;
+            font-size: 50px;
+            margin-bottom: 50px;
+        }
+
+        .Customer p {
+            line-height: 30px;
+        }
+
+        .Customer h3 {
+            margin-top: 20px;
+            color: #7fc142;
+        }
+
+        .Customer span {
+            font-size: 15px;
+        }
+
+        /* Owl Carousel Dots */
+        .owl-carousel2 .owl-dots {
+            position: absolute;
+            bottom: 70px;
+            left: 46.6%;
+        }
+
+        .owl-carousel2 .owl-dots i {
+            color: #7fc142;
+        }
+
+        .owl-carousel2 .owl-dots i:hover button {
+            color: #7fc142 !important;
+        }
+
+        .owl-carousel2 span {
+            border: 2px solid black;
+            background: transparent !important;
+        }
+
+        .owl-carousel2 .active span {
+            background: #7fc142 !important;
+            border: 2px solid #7fc142;
+        }
+
+        /* Book Section */
+        .book {
+            background: linear-gradient(135deg, #009f7f, #7fc142);
+            padding: 60px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .book .highlight {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .book .subheading {
+            font-size: 18px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .form {
+            margin-top: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #fff;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        input[type="submit"] {
+            background: #7fc142;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background: #009f7f;
+        }
+
+        /* Gallery Image Styles */
+        .gallery .img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Customer Testimonials Heading */
+        .customer-testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+        .customer-testimonials h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: #ff9800;
+            margin: 10px auto;
+        }
+
+        /* Home Section Styles */
+        /* Hom/* Home Section Styles */
+        .home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            padding: 50px 0;
+            position: relative; /* Needed for absolute positioning of the overlay */
+            min-height: 100vh; /* Ensure it covers the entire viewport height */
+        }
+
+        /* Pseudo-element for Background Image */
+        .home::before {
+            content: ''; /* Create an empty pseudo-element */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("{{ url_for('static', filename='images/bardarban.jpg') }}");  /* Background image */
+            background-size: cover; /* Ensures the image covers the entire section */
+            background-position: center center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            opacity: 0.7; /* Adjust opacity for subtle background effect */
+            z-index: 1; /* Position it behind the content */
+        }
+
+        /* Content styling for better readability */
+        .home .content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Add transparency to content background */
+            padding: 40px;
+            border-radius: 10px; /* Rounded corners for the content box */
+            text-align: center;
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1); /* Soft shadow around content */
+            position: relative; /* Ensures the content is above the background */
+            z-index: 2; /* Ensures the content stays on top */
+        }
+
+        /* Heading Style */
+        .home .content h1 {
+            font-size: 3em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase; /* Makes the heading stand out */
+            font-weight: 600; /* Bold weight for emphasis */
+        }
+
+        /* Form Label Style */
+        form label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+            color: #555;
+            font-weight: 500; /* Slightly bolder label text */
+        }
+
+        form input, form button {
+            text-size-adjust: initial;
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            font-size: 16px; /* Adjust the value to increase/decrease text size */
+        }
+
+
+        form input[type="text"], form select {
+            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for inputs */
+        }
+
+        form button {
+            background-color: #7fc142; /* Green button */
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+
+        form label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+            color: #555;
+            margin-right: 23px;
+        }
+
+        form select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            width: 107%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+        }
+
+        /* Form overlay styling with light blue background */
+        /* Form overlay styling with light blue background */
+        .form-overlay {
+            background-color: #E3F2FD; /* Light blue background */
+            padding: 5px; /* Significantly reduced padding */
+            border-radius: 5px;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+            width: 100%;
+            max-width: 600px;
+            color: #333;
+        }
+
+        /* Centering and styling the title */
+        h1 {
+            text-align: center;
+            font-size: 14px; /* Reduced font size */
+            color: #333;
+            margin-bottom: 3px; /* Smaller margin */
+        }
+
+        /* Styling for the description below the heading */
+        p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 3px; /* Reduced margin */
+            font-size: 9px; /* Reduced font size */
+        }
+
+        /* Layout for radio inputs */
+        .rating {
+            display: flex;
+            justify-content: center;
+            gap: 3px; /* Minimized gap */
+            margin-bottom: 3px; /* Smaller margin */
+            color: #666;
+            font-size: 9px; /* Reduced font size */
+        }
+
+        .rating label {
+            cursor: pointer;
+        }
+
+        /* Styling input fields */
+        label {
+            display: block;
+            margin-top: 3px; /* Reduced margin */
+            font-size: 9px; /* Smaller font size */
+            color: #666;
+        }
+
+        input, textarea {
+            width: 104%;
+            padding: 3px;
+            margin-top: 2px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            font-size: 17px;
+            color: #333;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Row layout for two columns */
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 11%; /* Minimal space between columns */
+            margin-top: 3px; /* Smaller margin */
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        /* Spacing for input fields */
+        .col input {
+            margin-bottom: 3px; /* Smaller margin */
+        }
+
+        /* Styling the submit button */
+        button {
+            width: 100%;
+            padding: 4px; /* Reduced padding */
+            background-color: #0288D1;
+            color: #fff;
+            border: none;
+            border-radius: 2px; /* Reduced border radius */
+            cursor: pointer;
+            font-size: 11px; /* Reduced font size */
+            margin-top: 5px; /* Smaller margin */
+        }
+
+        /* Styling for the specific label */
+        label[for="rating"] {
+            margin-right: 4px; /* Makes the label text bold */
+        }
+
+        /* Styling for the label with the class 'rating-label' */
+        .rating-label {
+            margin-right: 23px; /* Makes the text bold */
+        }
+
+
+        button:hover {
+            background-color: #0277BD;
+        }
+
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="content flex_space">
+        <div class="logo">
+            <!-- Add the path to your logo image -->
+            <img src="path/to/your/logo.png" alt="">
+        </div>
+        <div class="navlinks">
+            <ul id="menulist">
+                <li><a href="/">home</a></li>
+                <li><a href="/about">about</a></li>
+                <li><a href="/contact">contact us</a></li>
+                <li><a href="/feedback"> Feedback</a></li>
+                <!--  <li><i class="fa fa-search"></i></li>-->
+                <li>
+                    <a href="register.html" class="primary-btn">SIGN IN</a>
+                <li>
+                    <a href="merge.html" class="primary-btn">LOG IN</a>
+                </li>
+            </ul>
+            <!-- Fix the class name for the bars icon and add a space before the onclick attribute -->
+            <span class="fa fa-bars" onclick="menutoggle()"></span>
+        </div>
+    </div>
+</header>
+
+<script>
+    var menulist = document.getElementById('menulist');
+    menulist.style.maxHeight = "0px";
+
+    function menutoggle() {
+        if (menulist.style.maxHeight == "0px") {
+            menulist.style.maxHeight = "100vh";
+        } else {
+            menulist.style.maxHeight = "0px";
+        }
+    }
+</script>
+
+<section class="home">
+    <div class="content">
+        <h1>Feedback</h1>
+        <p>Please write your feedback below:</p>
+
+        <form action="{{ url_for('feedback.submit_feedback') }}" method="POST">
+            <label for="rating" class="rating-label">How do you rate your overall experience?</label>
+            <div class="rating">
+                <label><input type="radio" name="rating" value="bad"> Bad</label>
+                <label><input type="radio" name="rating" value="average"> Average</label>
+                <label><input type="radio" name="rating" value="good"> Good</label>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="name">Full Name</label>
+                    <input type="text" name="name" >
+                </div>
+
+                <div class="col">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" >
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="age">Age</label>
+                    <input type="number" name="age" >
+                </div>
+
+                <div class="col">
+                    <label for="phone">Phone</label>
+                    <input type="tel" name="phone" >
+                </div>
+            </div>
+
+            <label for="message">Message</label>
+            <textarea name="message" rows="5" ></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+
+
+    </div>
+    </div>
+
+    </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
+        integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: true,
+        dots: false,
+        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+    })
+</script>
+
+
+<script>
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: true,
+        dots: false,
+        autoplay: true,
+        autoplayTimeout: 1000,
+        autoplayHoverPause: true,
+        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 4,
+            },
+            1000: {
+                items: 6
+            }
+        }
+    })
+</script>
+
+
+<section>
+
+</section>
+
+<script src="https://kit.fontawesome.com/032d11eac3.js" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
