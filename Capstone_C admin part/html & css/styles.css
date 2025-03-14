@@ -1,0 +1,435 @@
+section {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Flex container to center the bottom section */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures space is distributed between top and bottom sections */
+    height: 100vh; /* Full viewport height */
+    margin-bottom: 20px; /* Add margin to lower the footer */
+}
+
+/* Gallery section styling */
+section.gallery {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Fill the full viewport height */
+    margin: 0; /* Remove default margin */
+    background-color: #f9f9f9; /* Background color */
+}
+section.book {
+    position: relative; /* Required for positioning the overlay */
+    background-color: #000; /* Fallback color if the image does not load */
+    padding: 20px; /* Reduced padding for compactness */
+    color: #090808; /* Text color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);; /* Subtle shadow */
+    overflow: hidden; /* Ensure overlay does not extend beyond section */
+    width: 100%; /* Full width */
+    min-height: 450px; /* Adjusted minimum height */
+    margin-left: 1px; /* Increased margin on the left side */
+}
+
+/* Optional: Adjust right margin or any other side if needed */
+section.book {
+    margin-right: 10px; /* Example to add right margin if desired */
+}
+
+/* Overlay for the background image */
+section.book::before {
+    content: "";
+    position: absolute;
+    top: 0; /* Adjust this value if you want to move it down */
+    left: -20px; /* Move the background image left by 20px or adjust as needed */
+    width: calc(100% + 20px); /* Extend width to compensate for left margin */
+    height: 100%; /* Full height of the section */
+    background-image: url('../images/sylet.png'); /* Background image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background */
+    background-repeat: no-repeat; /* Prevent repetition */
+    opacity: 0.6; /* Adjust opacity as needed */
+    z-index: 1; /* Ensure it stays below the content */
+}
+
+
+/* Ensure content appears above the overlay */
+section.book * {
+    position: relative; /* Positioning for content */
+    z-index: 2; /* Stack content above overlay */
+}
+.table-container {
+    max-height: 400px; /* Set the maximum height of the table container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-top: 0;
+    padding-top: 0; /* Optional: Adds space above the table */
+    padding-right: 10px; /* Optional: Adds padding to prevent scrollbar overlap */
+}
+
+
+/* Styling the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px; /* Reduced margin */
+}
+td{
+color: white;
+
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 4px; /* Reduced padding for compactness */
+    text-align: center;
+}
+
+th {
+    background-color: #3CB371; /* Header background color */
+    color: #333; /* Header text color */
+}
+
+
+tr {
+  background-color: rgba(51, 51, 51, 0.5);
+
+
+
+}
+
+/* Form overlay styling */
+.form-overlay {
+    background-color: #ffffff;
+    padding: 10px; /* Reduced padding for compactness */
+    border-radius: 8px; /* Adjusted border radius */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center the text within the overlay */
+    width: 90%; /* Responsive width */
+    max-width: 450px; /* Adjusted maximum width */
+}
+
+/* Heading styling */
+h1 {
+    font-size: 20px; /* Smaller font size */
+    margin-bottom: 5px; /* Reduced margin */
+    color: #333; /* Dark color for better visibility */
+}
+
+p {
+    margin-bottom: 10px; /* Reduced margin */
+    font-size: 14px; /* Slightly smaller font size */
+    color: #555; /* Slightly lighter color for differentiation */
+}
+
+/* Button styling */
+button {
+    color: white; /* White text */
+    border: none;
+    padding: 6px 12px; /* Reduced padding */
+    border-radius: 4px; /* Slightly smaller border radius */
+    cursor: pointer;
+    font-size: 12px; /* Smaller font size */
+    transition: background-color 0.3s ease;
+    margin-top: 5px; /* Space above the button */
+}
+
+/* Label styling */
+label {
+    font-weight: bold;
+    margin-bottom: 2px; /* Reduced margin */
+    color: #333; /* Ensure labels are visible */
+}
+
+/* Input and textarea styling */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+textarea {
+    width: 100%; /* Full width */
+    padding: 6px; /* Reduced inner padding */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 12px; /* Smaller font size for readability */
+    color: #333; /* Dark text for contrast */
+}
+
+/* Style for the radio inputs */
+input[type="radio"] {
+    accent-color: #4CAF50; /* Color of the radio button */
+    margin-right: 2px; /* Space to the right of the radio buttons */
+}
+
+/* Textarea styling */
+textarea {
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+/* Row and column layout for form elements */
+.row {
+    display: flex;
+    gap: 8px; /* Reduced space between columns */
+}
+
+.col {
+    flex: 1; /* Distribute space evenly among columns */
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+    .row {
+        flex-direction: column; /* Stack columns vertically */
+    }
+
+    .form-overlay {
+        padding: 10px; /* Maintain reduced padding for smaller screens */
+    }
+}
+
+/* Additional form styling */
+form {
+    display: flex; /* Enable flexbox for the form */
+    flex-direction: column; /* Stack form elements vertically */
+    gap: 8px; /* Space between form elements */
+    margin-top: 5px; /* Reduced space above the form */
+}
+
+/* Center the label for the rating question */
+label[for="rating"] {
+    text-align: center; /* Center text in the label */
+    font-weight: bold; /* Make the label bold */
+}
+
+/* Centering the rating options */
+.rating {
+    display: flex; /* Enable flexbox for the rating section */
+    justify-content: center; /* Center the rating buttons */
+    margin-top: 5px; /* Space above the rating section */
+}
+
+/* Additional styling for labels and inputs */
+label {
+    display: block; /* Ensure each label takes the full width */
+    margin: 3px 0; /* Margin around labels */
+}
+
+/* Base button styling */
+.btn {
+    padding: 4px 8px; /* Reduced padding */
+    margin: 2px;
+    border: none;
+    border-radius: 3px; /* Smaller border radius */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+/* Specific button styles */
+button[onclick^="showEditForm"] {
+    background-color: #7fc142; /* Green */
+    color: white;
+}
+
+button[onclick^="deleteRoute"] {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+button[onclick^="deleteFeedback"] {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+button:hover {
+    background-color: #ddd; /* Default hover */
+}
+
+button:active {
+    background-color: #bbb; /* Active state */
+}
+
+/* Button types for submit and cancel */
+button[type="submit"] {
+    background-color: #4CAF50; /* Green background for submit */
+    color: white;
+}
+
+button[type="button"] {
+    background-color: #f44336; /* Red background for cancel */
+    color: white;
+}
+
+/* Button hover effects */
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #45a049; /* Darker green on hover for submit */
+}
+
+button[type="button"]:hover {
+    background-color: #d32f2f; /* Darker red on hover for cancel */
+}
+
+/* Modal styling */
+#edit-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#edit-form-container {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 15px; /* Reduced padding */
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 0; /* Compact padding */
+    text-align: center;
+    margin-top: 10px; /* Adjusted margin to push footer lower */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 2px; /* Reduced padding for tighter layout */
+}
+
+/* Footer links styling */
+.footer-links a {
+    color: #fff; /* Link color */
+    text-decoration: none; /* No underline */
+    margin: 0 5px; /* Adjusted margin between links */
+    font-size: 10px; /* Smaller font size for compactness */
+}
+
+.footer-links a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Social media icons styling */
+.footer-icons {
+    margin: 0 5px; /* Space around icons */
+}
+
+.footer-icons i {
+    font-size: 14px; /* Smaller icon size */
+    margin: 0 5px; /* Space between icons */
+}
+
+/* Responsive footer adjustments */
+@media screen and (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* Stack footer content on smaller screens */
+        align-items: center; /* Center align for small screens */
+    }
+
+    .footer-links,
+    .footer-icons {
+        margin-bottom: 5px; /* Space below elements */
+    }
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0; /* Remove margin for a tighter fit */
+}
+
+.footer-section h3 {
+    margin-bottom: 2px; /* Reduce space below heading */
+    font-size: 12px; /* Smaller font size for headings */
+}
+
+.footer-section p {
+    font-size: 10px; /* Smaller font size for text */
+    margin: 1px 0; /* Reduced margin for compactness */
+}
+
+.footer-section a {
+    color: #fff; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.footer-section a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Remove default list margin */
+}
+
+.footer-section ul li {
+    margin-bottom: 0; /* Remove margin for minimal spacing */
+}
+
+.footer-section ul li a {
+    color: #fff;
+    font-size: 10px; /* Smaller font size for list links */
+    text-decoration: none;
+}
+
+.footer-section .socials a {
+    color: #fff;
+    margin-right: 2px; /* Further reduced margin */
+}
+
+.footer-section .socials a:hover {
+    color: #ff9800;
+}
+.footer-bottom {
+    border-top: 1px solid #555;
+    padding-top: 11px; /* Minimal padding */
+    font-size: 10px; /* Smaller font size for text in the footer bottom */
+    color: #fff; /* Ensure text color remains white for visibility */
+}
+
+/* If there are specific text elements inside footer-bottom, you can style them individually */
+.footer-bottom p,
+.footer-bottom a {
+    margin: 0; /* Remove margin for a tighter fit */
+    font-size: 10px; /* Keep the font size consistent */
+    color: #fff; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+
+
+footer form input,
+footer form textarea {
+    width: 100%;
+    margin-bottom: 1px; /* Minimal margin */
+    padding: 1px; /* Very tight padding */
+    font-size: 10px; /* Smaller font size for inputs */
+}
+
+footer form button {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 1px; /* Minimal padding */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 10px; /* Smaller font size for buttons */
+}
+
+footer form button:hover {
+    background-color: #e67e22;
+}
+
